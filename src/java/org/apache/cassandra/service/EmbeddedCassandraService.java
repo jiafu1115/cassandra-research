@@ -19,6 +19,8 @@ package org.apache.cassandra.service;
 
 import java.io.IOException;
 
+import org.apache.cassandra.config.Config;
+
 /**
  * An embedded, in-memory cassandra storage service.
  * This kind of service is useful when running unit tests of
@@ -50,4 +52,10 @@ public class EmbeddedCassandraService
         cassandraDaemon.init(null);
         cassandraDaemon.start();
     }
+    
+    public static void main(String[] args) throws IOException {
+    	Config.setClientMode(true);
+    	EmbeddedCassandraService cassandra = new EmbeddedCassandraService();
+        cassandra.start();
+	}
 }
